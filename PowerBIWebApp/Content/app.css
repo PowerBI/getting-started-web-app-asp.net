@@ -1,0 +1,101 @@
+﻿body {
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.headerSM {
+    font-size: 32px;
+    color: #333;
+}
+
+.headerXS {
+    font-size: 24px;
+    color: #333;
+    white-space:nowrap;
+}
+
+.badge {
+    float: left !important;
+    white-space: nowrap;    
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background-color: #1f7144;
+    border-color: #1f7144;
+}
+
+a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+    color: #1f7144;     
+}
+
+.btn-primary {
+    background-color: #1f7144;
+    border-color: #1f7144;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+        background-color: #29a05f;
+        border-color: #29a05f; 
+    }
+
+    .btn-primary.disabled, [disabled].btn-primary, fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, [disabled].btn-primary:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, [disabled].btn-primary:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, [disabled].btn-primary:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, [disabled].btn-primary.active, fieldset[disabled] .btn-primary.active {
+        background-color: #1f7144;
+    border-color: #1f7144;
+    }
+
+.ui-datepicker {
+    background-color: #FFF;
+    border: 1px solid #373737;
+    color: #373737;
+    display: none;
+}
+
+.ui-datepicker-header {
+    background-color: #373737;
+    color: #fff;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.ui-datepicker-calendar th {
+    background-color: #1F7144;
+    color: #fff;
+    padding: 4px;
+    text-align: center;
+}
+
+.ui-datepicker-calendar td {
+    padding: 4px;
+    text-align: center;
+}
+
+.ui-datepicker-calendar td:hover {
+    background-color: #1F7144;
+    color: #fff !important;
+}
+
+.ui-datepicker-calendar a {
+    color: #373737;
+}
+
+.ui-datepicker-header a {
+    color: #fff;
+    cursor: pointer;
+}
+
+.ui-datepicker-prev {
+    float: left;
+}
+
+.ui-datepicker-next {
+    float: right;
+}
+
+.ui-datepicker-title {
+    text-align: center;
+}

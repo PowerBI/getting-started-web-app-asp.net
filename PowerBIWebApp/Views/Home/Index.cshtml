@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Power BI API Web Sample</h2>
+<button id="btnGet" class="btn btn-primary">Get Datasets</button>
+<button id="btnCreate" class="btn btn-primary">Create Dataset</button>
+<button id="btnAdd" class="btn btn-primary">Add Rows</button>
+<button id="btnClear" class="btn btn-primary">Clear Rows</button>
+
+<div id="divDataset"></div>
+
+    @section Scripts {
+        <script type="text/javascript">
+            var dsID;
+            $(document).ready(function () {
+
+                //Get datasets
+                $("#btnGet").click(function () {
+                    $.ajax({
+                        url: "/api/PowerBI/GetDatasets",
+                        type: "GET",
+                        success: function (data) {
+
+                            $("#alert").html("Get datasets");
+                            $("#alert").show();
+
+                            //Loop through data to add items
+                            $(data).each(function (i, e) {
+                            if (e.name != null)
+                                $("#divDataset").append($("<div>", { text: e.name, value: e.id }));
+                                });
+                            },
+                        error: function (er) {
+                            $("#alert").html("Error retrieving Power BI datasets");
+                            $("#alert").show();
+                        }
+                    });
+                });
+
+                //Create dataset
+                $("#btnCreate").click(function () {
+                    var data = {
+                        "name": "Products", "tables":
+                            [{
+                                "name": "Product", "columns":
+                                 [   { "name": "ProductID", "dataType": "Int64" },
+                                     { "name": "Name", "dataType": "string" },
+                                     { "name": "Category", "dataType": "string" },
+                                     { "name": "IsCompete", "dataType": "bool" }]
+                            }]
+                    };
+
+                    $.ajax({
+                        url: "/api/PowerBI/CreateDataset",
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        success: function (data) {
+                            dsID = data;
+                            $("#alert").html("Create dataset");
+                            $("#alert").show();
+                        },
+                        error: function (er) {
+                            $("#alert").html("Error retrieving Power BI datasets");
+                            $("#alert").show();
+                        }
+                    });
+                });
+
+                //Add table rows
+                $("#btnAdd").click(function () {
+                    var data = {
+                        datasetId: dsID, tableName: "Product",
+                        rows: [ { "ProductID": 1, "Name": "Adjustable Race", "Category": "Components", "IsCompete": true},
+                                { "ProductID": 2, "Name": "LL Crankarm", "Category": "Components", "IsCompete": true},
+                                { "ProductID": 3, "Name": "HL Mountain Frame - Silver", "Category": "Bikes", "IsCompete": false}]
+                    };
+                    $.ajax({
+                        url: "/api/PowerBI/AddTableRows",
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        success: function (data) {
+                            $("#alert").html("Table rows added");
+                            $("#alert").show();
+                        },
+                        error: function (er) {
+                            $("#alert").html("Error retrieving Power BI datasets");
+                            $("#alert").show();
+                        }
+                    });
+                });
+
+                //Clear table
+                $("#btnClear").click(function () {
+                    var data = { datasetId: dsID, tableName: "Product" };
+                    $.ajax({
+                        url: "/api/PowerBI/ClearTable",
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        success: function (data) {
+                            $("#alert").html("Table cleared");
+                            $("#alert").show();
+                        },
+                        error: function (er) {
+                            $("#alert").html("Error retrieving Power BI datasets");
+                            $("#alert").show();
+                        }
+                    });
+                });
+            });
+        </script>
+    }
