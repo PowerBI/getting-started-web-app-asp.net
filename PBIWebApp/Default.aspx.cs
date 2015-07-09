@@ -1,5 +1,4 @@
-﻿//TODO: put the token cache in a global place so that you could do token refresh
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,10 +79,10 @@ namespace PBIWebApp
             string responseContent = string.Empty;
 
             //The resource Uri to the Power BI REST API resource
-            string powerBI_RESTResourceUri = "https://api.powerbi.com/beta/myorg/";
+            string datasetsUri = "https://api.powerbi.com/beta/myorg/";
             
             //Configure datasets request
-            System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}datasets", powerBI_RESTResourceUri)) as System.Net.HttpWebRequest;
+            System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}datasets", datasetsUri)) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
             request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
