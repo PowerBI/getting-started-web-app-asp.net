@@ -8,8 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace PBIWebApp {
-    
-    
+  
     public partial class Redirect {
     }
 }

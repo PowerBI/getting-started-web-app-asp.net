@@ -25,7 +25,7 @@ namespace PBIWebApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1861585d-1e63-40bd-9627-9a79c2968cb3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ClientID {
             get {
                 return ((string)(this["ClientID"]));
@@ -34,10 +34,10 @@ namespace PBIWebApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("P8JzXmWt6WeMx9azaQHpxn6r3+YoAQFEPvVVDVxSMys=")]
-        public string ClientSecret {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ClientSecretKey {
             get {
-                return ((string)(this["ClientSecret"]));
+                return ((string)(this["ClientSecretKey"]));
             }
         }
     }

@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Collections.Specialized;
-using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace PBIWebApp
 {
@@ -79,10 +79,10 @@ namespace PBIWebApp
             string responseContent = string.Empty;
 
             //The resource Uri to the Power BI REST API resource
-            string datasetsUri = "https://api.powerbi.com/beta/myorg/";
+            string datasetsUri = "https://api.powerbi.com/v1.0/myorg/datasets";
             
             //Configure datasets request
-            System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}datasets", datasetsUri)) as System.Net.HttpWebRequest;
+            System.Net.WebRequest request = System.Net.WebRequest.Create(datasetsUri) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
             request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
@@ -96,28 +96,17 @@ namespace PBIWebApp
                     responseContent = reader.ReadToEnd();
 
                     //Deserialize JSON string
-                    PBIDatasets PBIDatasets = JsonConvert.DeserializeObject<PBIDatasets>(responseContent);
+                    JavaScriptSerializer json = new JavaScriptSerializer();
+                    Datasets datasets = (Datasets)json.Deserialize(responseContent, typeof(Datasets));
 
                     resultsTextbox.Text = string.Empty;
                     //Get each Dataset from 
-                    foreach (Dataset ds in PBIDatasets.Datasets)
+                    foreach (dataset ds in datasets.value)
                     {
                         resultsTextbox.Text += String.Format("{0}\t{1}\n", ds.Id, ds.Name);
                     }
                 }
             }
         }
-    }
-    
-    //Power BI Datasets
-    public class PBIDatasets
-    {
-        public Dataset[] Datasets { get; set; }
-    }
-
-    public class Dataset
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }
