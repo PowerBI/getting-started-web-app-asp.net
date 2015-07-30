@@ -61,7 +61,7 @@ namespace PBIWebApp
                 {"resource", "https://analysis.windows.net/powerbi/api"},
 
                 //After user authenticates, Azure AD will redirect back to the web app
-                {"redirect_uri", "http://localhost:13526/Redirect"}
+                {"redirect_uri", Properties.Settings.Default.RedirectUrl}
             };
             
             //Create sign-in query string
@@ -96,6 +96,7 @@ namespace PBIWebApp
                     responseContent = reader.ReadToEnd();
 
                     //Deserialize JSON string
+                    //JavaScriptSerializer class is in System.Web.Script.Serialization
                     JavaScriptSerializer json = new JavaScriptSerializer();
                     Datasets datasets = (Datasets)json.Deserialize(responseContent, typeof(Datasets));
 

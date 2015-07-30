@@ -40,5 +40,14 @@ namespace PBIWebApp.Properties {
                 return ((string)(this["ClientSecretKey"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:13526/Redirect")]
+        public string RedirectUrl {
+            get {
+                return ((string)(this["RedirectUrl"]));
+            }
+        }
     }
 }
